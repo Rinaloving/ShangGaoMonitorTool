@@ -130,7 +130,14 @@ namespace ShangGaoMonitorTool
           
             this.chart1.Titles[0].Text = string.Format("");
             this.chart1.Series[0].ChartType = SeriesChartType.Line;
-           
+            this.chart1.Series[0].BorderWidth = 2;
+            this.chart1.Series[0].MarkerColor = Color.Red;       //标记点中心颜色
+            this.chart1.Series[0].MarkerSize = 5;                 //标记点大小
+            this.chart1.Series[0].MarkerStyle = MarkerStyle.Circle;  //标记点类型
+            this.chart1.Series[0].Label = "#VAL";            //设置显示X Y的值
+            this.chart1.Series[0].ToolTip = "#VALX\r#VAL件";     //鼠标移动到对应点显示数值
+
+
             this.chart1.Series[0].Points.Clear();
         }
 
@@ -201,8 +208,8 @@ namespace ShangGaoMonitorTool
 
             }
 
-            double tickTime = (double)(scheduledTime - DateTime.Now).TotalMilliseconds;  //每天定时触发
-            timer = new System.Timers.Timer(tickTime);  //测试时间 60000
+           // double tickTime = (double)(scheduledTime - DateTime.Now).TotalMilliseconds;  //每天定时触发
+            timer = new System.Timers.Timer(60000);  //测试时间 60000
             timer.Enabled = true;
             timer.Elapsed += new System.Timers.ElapsedEventHandler(timer_Elapsed);
          
