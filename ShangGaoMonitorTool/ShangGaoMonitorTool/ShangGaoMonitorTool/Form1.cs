@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -36,7 +38,7 @@ namespace ShangGaoMonitorTool
         public Form1()
         {
             InitializeComponent();
-            CheckForIllegalCrossThreadCalls = false;
+            CheckForIllegalCrossThreadCalls = false;  //组件之间可以调用
         }
 
 
@@ -185,12 +187,14 @@ namespace ShangGaoMonitorTool
             
         }
 
+        string specifiedHour = System.Configuration.ConfigurationManager.AppSettings["specifiedHour"].ToString();
+        string specifiedMinute = System.Configuration.ConfigurationManager.AppSettings["specifiedMinute"].ToString();
         public void schedule_Timer()
         {
             Console.WriteLine("### Timer Started ###");
 
             DateTime nowTime = DateTime.Now;
-            DateTime scheduledTime = new DateTime(nowTime.Year, nowTime.Month, nowTime.Day, 17, 21, 0, 0); //指定预设时间  HH,MM,SS [8am and 42 minutes]
+            DateTime scheduledTime = new DateTime(nowTime.Year, nowTime.Month, nowTime.Day, Int32.Parse(specifiedHour), Int32.Parse(specifiedMinute), 0, 0); //指定预设时间  HH,MM,SS [8am and 42 minutes]
             if (nowTime > scheduledTime)
             {
                 scheduledTime = scheduledTime.AddDays(1);
@@ -207,14 +211,10 @@ namespace ShangGaoMonitorTool
 
         public void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            Console.WriteLine("### Timer Stopped ### \n");
             timer.Stop();
-            //Console.WriteLine("### Scheduled Task Started ### \n\n");
-            //Console.WriteLine("Hello World!!! - Performing scheduled task\n");
-            //Console.WriteLine("### Task Finished ### \n\n");
-
-            string fileBacksPath = @"D:\sgxml\Up\Backs";
-            string fileUpPath = @"D:\sgxml\Up\";
+           
+            string fileBacksPath = System.Configuration.ConfigurationManager.AppSettings["fileBacksPath"].ToString();
+            string fileUpPath = System.Configuration.ConfigurationManager.AppSettings["fileUpPath"].ToString();
             removeUnUploadFile(fileBacksPath, fileUpPath);
             //InitChart();
             UpdateQueueValue();
@@ -228,15 +228,28 @@ namespace ShangGaoMonitorTool
             schedule_Timer();
         }
 
+
+        string provinceIP = System.Configuration.ConfigurationManager.AppSettings["provinceIP"].ToString();
+        string provincePort = System.Configuration.ConfigurationManager.AppSettings["provincePort"].ToString();
+        string username = System.Configuration.ConfigurationManager.AppSettings["username"].ToString();
+        string password = System.Configuration.ConfigurationManager.AppSettings["password"].ToString();
+        string provinceBackFilePath = System.Configuration.ConfigurationManager.AppSettings["provinceBackFilePath"].ToString();
+        /// <summary>
+        /// 移动未上传成功的文件
+        /// </summary>
+        /// <param name="fileBacksPath"></param>
+        /// <param name="fileUpPath"></param>
         public  void removeUnUploadFile(string fileBacksPath, string fileUpPath)
         {
             //Console.WriteLine(DateTime.Today); //2018/7/3/0000
            
 
             FileInfo[] fileInfos = new DirectoryInfo(fileBacksPath).GetFiles("*.xml");
-            filenums = fileInfos.Count();
+           
+           List<string> newfileInfos = fileFilter(provinceIP, provincePort, username, password, fileInfos, provinceBackFilePath);
+           filenums = newfileInfos.Count();
             //如果这个文件夹下存在文件
-            if (fileInfos.Count() > 0)
+            if (newfileInfos.Count() > 0)
             {
                 foreach (var item in fileInfos)
                 {
@@ -244,12 +257,21 @@ namespace ShangGaoMonitorTool
                     //Console.WriteLine("文件：" + item.Name);
                     //Console.WriteLine("文件修改时间：" + item.LastWriteTime);
                     //如果文件的创建时间大于当天子时时间，说明是今天创建的，那么就移动到Up文件夹下，由上报工具重新上传
-                    if (DateTime.Today > item.LastWriteTime)
+                    if (DateTime.Today < item.LastWriteTime)
                     {
                         //把这些文件移动到Up文件夹下
                         try
                         {
-                            File.Move(item.FullName, fileUpPath + item.Name);
+                            foreach (var file in newfileInfos)
+                            {
+                                //如果文件名相同的就移出去，(由上报工具)重新上报
+                                if (file.Equals(item.ToString()))
+                                {
+                                    File.Move(item.FullName, fileUpPath + item.Name);
+                                }
+                            }
+
+                          
                         }
                         catch (Exception ex)
                         {
@@ -264,6 +286,47 @@ namespace ShangGaoMonitorTool
         }
 
 
+        /// <summary>
+        /// 对比本地backs文件下xml报文和省前置机上RepMsg文件夹下的报文如果有不存在的就移动出来   
+        /// </summary>
+        public List<string> fileFilter(string ip, string port, string username, string password, FileInfo[] fileInfos, string filepath)
+        {
+            //连接SFTP
+            SFTPHandler sftp = new SFTPHandler(ip, port, username, password);
+            if (!sftp.Connected)
+            {
+                sftp.Connect();
+            }
+            //获取SFTP当天的报文  
+            ArrayList fileList =  sftp.GetFileListByCreateTime(filepath,".xml");
+            List<string> sftpfileList = new List<string>();
+            foreach (var file in fileList)
+            {
+                sftpfileList.Add(file.ToString());
+            }
+            //把本地读取的报文文件放入ArryList集合中
+            List<string> localFileList = new List<string>();
+            foreach (var file in fileInfos)
+            {
+                localFileList.Add(file.ToString());
+            }
+
+            if (sftpfileList!=null)
+            {
+                //取本地当日文件集合和SFTP上面当日文件集合的差集
+
+                localFileList = localFileList.Except(sftpfileList).ToList();
+
+            }
+
+            sftp.Disconnect();
+            return localFileList;
+
+        }
+
+
+
+        
 
 
 

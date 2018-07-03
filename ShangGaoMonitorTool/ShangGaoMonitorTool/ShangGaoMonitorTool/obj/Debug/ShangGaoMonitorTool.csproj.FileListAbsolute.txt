@@ -26,3 +26,6 @@ D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMo
 D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\Debug\ShangGaoMonitorTool.csproj.CoreCompileInputs.cache
 D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\Debug\ShangGaoMonitorTool.exe
 D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\Debug\ShangGaoMonitorTool.pdb
+D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\bin\Debug\Renci.SshNet.dll
+D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\Debug\ShangGaoMonitorTool.csproj.CopyComplete
+D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\Debug\ShangGaoMonitorTool.csprojAssemblyReference.cache
