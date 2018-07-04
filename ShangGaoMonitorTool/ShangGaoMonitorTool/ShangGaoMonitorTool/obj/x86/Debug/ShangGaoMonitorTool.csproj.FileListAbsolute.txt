@@ -5,7 +5,6 @@ D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMo
 D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\bin\x86\Debug\System.Net.Http.dll
 D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\bin\x86\Debug\System.Net.Http.xml
 D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\bin\x86\Debug\zh-Hans\System.Net.Http.resources.dll
-D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.csprojAssemblyReference.cache
 D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.Form1.resources
 D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.Properties.Resources.resources
 D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.csproj.GenerateResource.cache
