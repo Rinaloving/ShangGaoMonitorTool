@@ -281,6 +281,11 @@ namespace ShangGaoMonitorTool
 
 
                     }
+                    else
+                    {
+                        // 表示这个文件不是本地当日生存报文，的到的总数量减1
+                        filenums--; 
+                    }
                 }
             }
         }
@@ -311,7 +316,7 @@ namespace ShangGaoMonitorTool
                 localFileList.Add(file.ToString());
             }
 
-            if (sftpfileList!=null)
+            if (sftpfileList.Count() > 0)
             {
                 //取本地当日文件集合和SFTP上面当日文件集合的差集
 
