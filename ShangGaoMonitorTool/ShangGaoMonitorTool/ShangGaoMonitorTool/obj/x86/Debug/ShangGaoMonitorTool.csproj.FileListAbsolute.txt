@@ -18,7 +18,6 @@ D:\MyGitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGao
 D:\MyGitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\bin\x86\Debug\System.Net.Http.dll
 D:\MyGitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\bin\x86\Debug\System.Net.Http.xml
 D:\MyGitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\bin\x86\Debug\zh-Hans\System.Net.Http.resources.dll
-D:\MyGitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.csprojResolveAssemblyReference.cache
 D:\MyGitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.Form1.resources
 D:\MyGitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.Properties.Resources.resources
 D:\MyGitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.csproj.GenerateResource.cache
@@ -26,3 +25,4 @@ D:\MyGitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGao
 D:\MyGitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.csproj.CopyComplete
 D:\MyGitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.exe
 D:\MyGitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.pdb
+D:\MyGitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.csprojResolveAssemblyReference.cache

@@ -245,22 +245,18 @@ namespace ShangGaoMonitorTool
            
 
             FileInfo[] fileInfos = new DirectoryInfo(fileBacksPath).GetFiles("*.xml");
-           
-           List<string> newfileInfos = fileFilter(provinceIP, provincePort, username, password, fileInfos, provinceBackFilePath);
-           filenums = newfileInfos.Count();
-            //如果这个文件夹下存在文件
-            if (newfileInfos.Count() > 0)
+
+            FileInfo[] localTodayFileInfos = getLocalTodatyFile(fileInfos);
+
+            if (localTodayFileInfos!=null)
             {
-                foreach (var item in fileInfos)
+                List<string> newfileInfos = fileFilter(provinceIP, provincePort, username, password, localTodayFileInfos, provinceBackFilePath);
+                filenums = newfileInfos.Count();
+                if (newfileInfos.Count() > 0)
                 {
-                    //Console.WriteLine("文件全路径：" + item.FullName);
-                    //Console.WriteLine("文件：" + item.Name);
-                    //Console.WriteLine("文件修改时间：" + item.LastWriteTime);
-                    //如果文件的创建时间大于当天子时时间，说明是今天创建的，那么就移动到Up文件夹下，由上报工具重新上传
-                    if (DateTime.Today < item.LastWriteTime)
+                    try
                     {
-                        //把这些文件移动到Up文件夹下
-                        try
+                        foreach (var item in localTodayFileInfos)
                         {
                             foreach (var file in newfileInfos)
                             {
@@ -270,24 +266,59 @@ namespace ShangGaoMonitorTool
                                     File.Move(item.FullName, fileUpPath + item.Name);
                                 }
                             }
-
-                          
-                        }
-                        catch (Exception ex)
-                        {
-
-                            throw new Exception(string.Format("文件移出失败，原因：{0}", ex.Message));
-                        }
-
+                        } 
 
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        // 表示这个文件不是本地当日生存报文，的到的总数量减1
-                        filenums--; 
+
+                        throw new Exception(string.Format("文件移出失败，原因：{0}", ex.Message));
                     }
+
                 }
+
             }
+            else
+            {
+                //表示今天一个报文没有生成
+                filenums = 0;
+            }
+
+            //本地当日报文
+
+            //var todayLocalFiles = from s in fileInfos
+            //                      where s.LastWriteTime > DateTime.Today
+            //                      select s;
+
+
+           
+               // filenums = fileInfos.Count();
+                //如果这个文件夹下存在文件
+                //if (newfileInfos.Count() > 0)
+                //{
+                //    foreach (var item in fileInfos)
+                //    {
+                //        //Console.WriteLine("文件全路径：" + item.FullName);
+                //        //Console.WriteLine("文件：" + item.Name);
+                //        //Console.WriteLine("文件修改时间：" + item.LastWriteTime);
+                //        //如果文件的创建时间大于当天子时时间，说明是今天创建的，那么就移动到Up文件夹下，由上报工具重新上传
+                //        if (DateTime.Today < item.LastWriteTime)
+                //        {
+                //            //把这些文件移动到Up文件夹下
+                            
+
+
+                //        }
+                //        else
+                //        {
+                //            // 表示这个文件不是本地当日生存报文，的到的总数量减1
+                //            filenums--;
+                //        }
+                //    }
+                //}
+     
+
+
         }
 
 
@@ -331,7 +362,40 @@ namespace ShangGaoMonitorTool
 
 
 
-        
+        public FileInfo[] getLocalTodatyFile(FileInfo[] fileInfos)
+        {
+            FileInfo[] localTodayFile = null; //本地当日报文不可能为100个吧
+            int star = fileInfos.Length;
+            for (int i = 0; i < fileInfos.Length; i++)
+            {
+                if (DateTime.Today > fileInfos[i].LastWriteTime)
+                {
+                    star--;
+                   // localTodayFile[i] = fileInfos[i];
+                }
+            }
+            localTodayFile = star == 0 ? null : new FileInfo[star]; //为了确实有效数组的长度
+
+            if (localTodayFile != null)
+            {
+                for (int i = 0; i < fileInfos.Length; i++)
+                {
+                    if (DateTime.Today < fileInfos[i].LastWriteTime)
+                    {
+                        
+                         localTodayFile[i] = fileInfos[i];
+                    }
+                }
+
+                return localTodayFile;
+            }
+
+            return null;
+        }
+
+
+
+
 
 
 
