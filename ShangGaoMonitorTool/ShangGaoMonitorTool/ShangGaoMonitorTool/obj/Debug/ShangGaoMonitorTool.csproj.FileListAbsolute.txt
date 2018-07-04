@@ -17,3 +17,12 @@ C:\Users\Administrator\Desktop\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoM
 C:\Users\Administrator\Desktop\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\Debug\ShangGaoMonitorTool.exe
 C:\Users\Administrator\Desktop\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\Debug\ShangGaoMonitorTool.pdb
 C:\Users\Administrator\Desktop\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\Debug\ShangGaoMonitorTool.csprojResolveAssemblyReference.cache
+D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\bin\Debug\ShangGaoMonitorTool.exe.config
+D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\bin\Debug\ShangGaoMonitorTool.exe
+D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\bin\Debug\ShangGaoMonitorTool.pdb
+D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\Debug\ShangGaoMonitorTool.Form1.resources
+D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\Debug\ShangGaoMonitorTool.Properties.Resources.resources
+D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\Debug\ShangGaoMonitorTool.csproj.GenerateResource.cache
+D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\Debug\ShangGaoMonitorTool.csproj.CoreCompileInputs.cache
+D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\Debug\ShangGaoMonitorTool.exe
+D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\Debug\ShangGaoMonitorTool.pdb

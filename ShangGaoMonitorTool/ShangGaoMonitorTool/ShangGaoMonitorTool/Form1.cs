@@ -26,7 +26,7 @@ namespace ShangGaoMonitorTool
 
         private int num = 1;//每次删除增加几个点
 
-        private static int j = -1; //日期初始值
+        private static int datenum = -1; //日期初始值
 
         static System.Timers.Timer timer;
         //string[] dt = new string[7];
@@ -136,7 +136,7 @@ namespace ShangGaoMonitorTool
         private  void UpdateQueueValue()
         {
 
-            if (dataQueue.Count > 7)
+            if (dataQueue.Count >= 7)
             {
                 //先出列
                 for (int i = 0; i < num; i++)
@@ -156,7 +156,7 @@ namespace ShangGaoMonitorTool
                // curValue = curValue + 10;
                 dataQueue.Enqueue(filenums); // dataQueue.Enqueue(r.Next(0, 100));
                 Thread.Sleep(2000);
-                dtq.Enqueue(date.AddDays(j++).ToString("M"));
+                dtq.Enqueue(date.AddDays(datenum++).ToString("M"));
             }
           
         }
@@ -197,12 +197,11 @@ namespace ShangGaoMonitorTool
 
             }
 
-            //double tickTime = (double)(scheduledTime - DateTime.Now).TotalMilliseconds;
-            timer = new System.Timers.Timer(60000);
+            //double tickTime = (double)(scheduledTime - DateTime.Now).TotalMilliseconds;  //每天定时触发
+            timer = new System.Timers.Timer(60000);  //测试时间
             timer.Enabled = true;
             timer.Elapsed += new System.Timers.ElapsedEventHandler(timer_Elapsed);
-            // www.lupotian3.vip
-            // Console.WriteLine("计划时间：" + scheduledTime + "执行时间："+DateTime.UtcNow);
+         
             timer.Start();
         }
 
