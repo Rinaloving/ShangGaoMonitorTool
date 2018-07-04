@@ -25,4 +25,3 @@ D:\MyGitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGao
 D:\MyGitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.csproj.CopyComplete
 D:\MyGitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.exe
 D:\MyGitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.pdb
-D:\MyGitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.csprojResolveAssemblyReference.cache

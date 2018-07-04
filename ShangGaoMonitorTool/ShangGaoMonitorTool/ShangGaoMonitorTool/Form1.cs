@@ -201,8 +201,8 @@ namespace ShangGaoMonitorTool
 
             }
 
-           // double tickTime = (double)(scheduledTime - DateTime.Now).TotalMilliseconds;  //每天定时触发
-            timer = new System.Timers.Timer(60000);  //测试时间 60000
+            double tickTime = (double)(scheduledTime - DateTime.Now).TotalMilliseconds;  //每天定时触发
+            timer = new System.Timers.Timer(tickTime);  //测试时间 60000
             timer.Enabled = true;
             timer.Elapsed += new System.Timers.ElapsedEventHandler(timer_Elapsed);
          
