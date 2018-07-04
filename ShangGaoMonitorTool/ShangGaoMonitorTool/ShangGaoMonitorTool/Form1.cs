@@ -201,8 +201,8 @@ namespace ShangGaoMonitorTool
 
             }
 
-            double tickTime = (double)(scheduledTime - DateTime.Now).TotalMilliseconds;  //每天定时触发
-            timer = new System.Timers.Timer(tickTime);  //测试时间 60000
+           // double tickTime = (double)(scheduledTime - DateTime.Now).TotalMilliseconds;  //每天定时触发
+            timer = new System.Timers.Timer(60000);  //测试时间 60000
             timer.Enabled = true;
             timer.Elapsed += new System.Timers.ElapsedEventHandler(timer_Elapsed);
          
@@ -366,6 +366,7 @@ namespace ShangGaoMonitorTool
         {
             FileInfo[] localTodayFile = null; //本地当日报文不可能为100个吧
             int star = fileInfos.Length;
+            int index = 0;
             for (int i = 0; i < fileInfos.Length; i++)
             {
                 if (DateTime.Today > fileInfos[i].LastWriteTime)
@@ -383,7 +384,8 @@ namespace ShangGaoMonitorTool
                     if (DateTime.Today < fileInfos[i].LastWriteTime)
                     {
                         
-                         localTodayFile[i] = fileInfos[i];
+                         localTodayFile[index] = fileInfos[i];
+                         index++;
                     }
                 }
 
