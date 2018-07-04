@@ -201,8 +201,8 @@ namespace ShangGaoMonitorTool
 
             }
 
-            //double tickTime = (double)(scheduledTime - DateTime.Now).TotalMilliseconds;  //每天定时触发
-            timer = new System.Timers.Timer(60000);  //测试时间
+            double tickTime = (double)(scheduledTime - DateTime.Now).TotalMilliseconds;  //每天定时触发
+            timer = new System.Timers.Timer(tickTime);  //测试时间 60000
             timer.Enabled = true;
             timer.Elapsed += new System.Timers.ElapsedEventHandler(timer_Elapsed);
          
@@ -276,7 +276,7 @@ namespace ShangGaoMonitorTool
                         catch (Exception ex)
                         {
 
-                            throw;
+                            throw new Exception(string.Format("文件移出失败，原因：{0}", ex.Message));
                         }
 
 
