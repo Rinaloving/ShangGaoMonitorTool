@@ -471,6 +471,8 @@ namespace ShangGaoMonitorTool
             FileInfo[] localTodayFileInfos = getLocalTodatyFile(fileInfos);
 
             localtodayfilenum = localTodayFileInfos.Count();
+            //如果是周末或0:00分，就设为初始值
+            if (localtodayfilenum == 0) { localtodayfilenum = 1; }
 
             // 获取sftp当日报文的数量  localTodayFileInfos, provinceBackFilePath
             //连接SFTP
@@ -482,6 +484,8 @@ namespace ShangGaoMonitorTool
             //获取SFTP当天的报文  
             ArrayList fileList = sftp.GetFileListByCreateTime(provinceBackFilePath, ".xml");
             sftptodayfilenum = fileList.Count;
+            //如果是周末或0:00分，就设为初始值
+            if (sftptodayfilenum == 0) { sftptodayfilenum = 2; }
             sftp.Disconnect();
 
             initShowPie();
