@@ -57,7 +57,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Renci.SshNet">
-      <HintPath>..\..\..\..\..\陈风龙\ref\Renci.SshNet.dll</HintPath>
+      <HintPath>E:\C#ref\Renci.SshNet.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

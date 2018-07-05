@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -30,6 +31,11 @@ namespace ShangGaoMonitorTool
 
         private static int datenum = -1; //日期初始值
 
+        private static int localtodayfilenum = 1; // 当日本地报文的数量
+
+        private static int sftptodayfilenum  =  2; //  省前置机当日报文数量
+
+
         static System.Timers.Timer timer;
         //string[] dt = new string[7];
         DateTime date = DateTime.Now.Date;
@@ -38,6 +44,7 @@ namespace ShangGaoMonitorTool
         public Form1()
         {
             InitializeComponent();
+            initShowPie();
             CheckForIllegalCrossThreadCalls = false;  //组件之间可以调用
         }
 
@@ -141,6 +148,42 @@ namespace ShangGaoMonitorTool
             this.chart1.Series[0].Points.Clear();
         }
 
+        //饼状图
+        public void initShowPie()
+        {
+
+            //Title title1 = new Title();
+            // title1.Text = "总合格率（%）";
+            //title1.ForeColor = Color.Blue;
+            //this.chart3.Titles.Add(title1);
+
+
+            this.chart3.Series.Clear();
+            Series series1 = new Series();
+            series1.ChartType = SeriesChartType.Pie;
+            this.chart3.Series.Add(series1);
+
+            int totalnum = localtodayfilenum + sftptodayfilenum;
+
+            int[] percents = new int[2] { (100*localtodayfilenum / totalnum), (100* sftptodayfilenum / totalnum) };
+            string[] pointsText = new string[2] { "本地", "省里" };
+            Color[] myColor = new Color[2] {  Color.FromArgb(250, 205, 137),
+                                                Color.FromArgb(255, 124, 255)};
+            DataPoint[] AllPoints = new DataPoint[2];
+            for (int i = 0; i < AllPoints.Length; i++)
+            {
+                AllPoints[i] = new DataPoint(i + 1, percents[i]);
+                AllPoints[i].LegendText = pointsText[i];
+                AllPoints[i].Color = myColor[i];
+                AllPoints[i].ToolTip = percents[i].ToString() + "%";
+                AllPoints[i].Label = percents[i].ToString() + "%";
+                AllPoints[i].LabelForeColor = Color.Black;
+                this.chart3.Series[0].Points.Add(AllPoints[i]);
+            }
+            this.chart3.Series[0]["PieLabelStyle"] = "Outside";
+            this.chart3.EndInit();
+
+        }
         //更新队列中的值
         private  void UpdateQueueValue()
         {
@@ -208,20 +251,20 @@ namespace ShangGaoMonitorTool
 
             }
 
-           // double tickTime = (double)(scheduledTime - DateTime.Now).TotalMilliseconds;  //每天定时触发
-            timer = new System.Timers.Timer(60000);  //测试时间 60000
+            double tickTime = (double)(scheduledTime - DateTime.Now).TotalMilliseconds;  //每天定时触发
+            timer = new System.Timers.Timer(tickTime);  //测试时间 60000
             timer.Enabled = true;
             timer.Elapsed += new System.Timers.ElapsedEventHandler(timer_Elapsed);
          
             timer.Start();
         }
-
+        string fileBacksPath = System.Configuration.ConfigurationManager.AppSettings["fileBacksPath"].ToString();
+        string fileUpPath = System.Configuration.ConfigurationManager.AppSettings["fileUpPath"].ToString();
         public void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             timer.Stop();
            
-            string fileBacksPath = System.Configuration.ConfigurationManager.AppSettings["fileBacksPath"].ToString();
-            string fileUpPath = System.Configuration.ConfigurationManager.AppSettings["fileUpPath"].ToString();
+           
             removeUnUploadFile(fileBacksPath, fileUpPath);
             //InitChart();
             UpdateQueueValue();
@@ -268,7 +311,7 @@ namespace ShangGaoMonitorTool
                             foreach (var file in newfileInfos)
                             {
                                 //如果文件名相同的就移出去，(由上报工具)重新上报
-                                if (file.Equals(item.ToString()))
+                                if (stringEx(file).Equals(stringEx(item.ToString())))
                                 {
                                     File.Move(item.FullName, fileUpPath + item.Name);
                                 }
@@ -345,13 +388,13 @@ namespace ShangGaoMonitorTool
             List<string> sftpfileList = new List<string>();
             foreach (var file in fileList)
             {
-                sftpfileList.Add(file.ToString());
+                sftpfileList.Add(stringEx(file.ToString()));
             }
             //把本地读取的报文文件放入ArryList集合中
             List<string> localFileList = new List<string>();
             foreach (var file in fileInfos)
             {
-                localFileList.Add(file.ToString());
+                localFileList.Add(stringEx(file.ToString()));
             }
 
             if (sftpfileList.Count() > 0)
@@ -371,7 +414,7 @@ namespace ShangGaoMonitorTool
 
         public FileInfo[] getLocalTodatyFile(FileInfo[] fileInfos)
         {
-            FileInfo[] localTodayFile = null; //本地当日报文不可能为100个吧
+            FileInfo[] localTodayFile = null; 
             int star = fileInfos.Length;
             int index = 0;
             for (int i = 0; i < fileInfos.Length; i++)
@@ -403,11 +446,47 @@ namespace ShangGaoMonitorTool
         }
 
 
+        /// <summary>
+        /// 去除报文的名称的英文和. 
+        /// </summary>
+        /// <param name="str"></param>
+        public string stringEx(string str)
+        {
+            Regex reg = new Regex(@"[a-zA-Z|.]");
 
+            if (reg.IsMatch(str))
+            {
+                str = Regex.Replace(str, @"[a-zA-Z|.]", "");
+            }
+            return str;
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //string fileBacksPath = System.Configuration.ConfigurationManager.AppSettings["fileBacksPath"].ToString();
+            //string fileUpPath = System.Configuration.ConfigurationManager.AppSettings["fileUpPath"].ToString();
+            //获取本地当日报文的数量
+            FileInfo[] fileInfos = new DirectoryInfo(fileBacksPath).GetFiles("*.xml");
 
+            FileInfo[] localTodayFileInfos = getLocalTodatyFile(fileInfos);
 
+            localtodayfilenum = localTodayFileInfos.Count();
 
+            // 获取sftp当日报文的数量  localTodayFileInfos, provinceBackFilePath
+            //连接SFTP
+            SFTPHandler sftp = new SFTPHandler(provinceIP, provincePort, username, password);
+            if (!sftp.Connected)
+            {
+                sftp.Connect();
+            }
+            //获取SFTP当天的报文  
+            ArrayList fileList = sftp.GetFileListByCreateTime(provinceBackFilePath, ".xml");
+            sftptodayfilenum = fileList.Count;
+            sftp.Disconnect();
 
+            initShowPie();
+
+            removeUnUploadFile(fileBacksPath, fileUpPath);
+        }
     }
 }
