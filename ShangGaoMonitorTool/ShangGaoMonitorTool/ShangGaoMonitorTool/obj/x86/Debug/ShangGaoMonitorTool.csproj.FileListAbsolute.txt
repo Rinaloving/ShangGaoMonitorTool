@@ -12,3 +12,4 @@ D:\MyGitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGao
 D:\MyGitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.exe
 D:\MyGitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.pdb
 D:\MyGitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\bin\x86\Debug\Renci.SshNet.dll
+D:\MyGitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.csprojResolveAssemblyReference.cache
