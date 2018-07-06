@@ -461,16 +461,21 @@ namespace ShangGaoMonitorTool
             return str;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        //创建代理。
+        private ProgressBar myProcessBar = null;//弹出的子窗体(用于显示进度条)
+        private delegate bool IncreaseHandle(int nValue, string vinfo);//代理创建
+        private IncreaseHandle myIncrease = null;//声明代理，用于后面的实例化代里
+        private int vMax = 100;//用于实例化进度条，可以根据自己的需要，自己改变
+
+        private void ThreadFun()
         {
-            //string fileBacksPath = System.Configuration.ConfigurationManager.AppSettings["fileBacksPath"].ToString();
-            //string fileUpPath = System.Configuration.ConfigurationManager.AppSettings["fileUpPath"].ToString();
+
             //获取本地当日报文的数量
             FileInfo[] fileInfos = new DirectoryInfo(fileBacksPath).GetFiles("*.xml");
 
             FileInfo[] localTodayFileInfos = getLocalTodatyFile(fileInfos);
 
-            localtodayfilenum = localTodayFileInfos.Count();
+            localtodayfilenum = localTodayFileInfos == null?0: localTodayFileInfos.Count();
             //如果是周末或0:00分，就设为初始值
             if (localtodayfilenum == 0) { localtodayfilenum = 1; }
 
@@ -488,9 +493,37 @@ namespace ShangGaoMonitorTool
             if (sftptodayfilenum == 0) { sftptodayfilenum = 2; }
             sftp.Disconnect();
 
+            vMax = (localtodayfilenum - sftptodayfilenum)<=0?1: (localtodayfilenum - sftptodayfilenum); //如果vMax为0就设置为1，不然进度条会卡死
+
             initShowPie();
 
             removeUnUploadFile(fileBacksPath, fileUpPath);
+
+
+            MethodInvoker mi = new MethodInvoker(ShowProcessBar);
+            this.BeginInvoke(mi);
+            Thread.Sleep(100);
+            object objReturn = null;
+            for (int i = 0; i < vMax; i++)
+            {
+                objReturn = this.Invoke(this.myIncrease, new object[] { 1, i.ToString() + "\r\n" });
+                Thread.Sleep(1000);
+            }
+        }
+        private void ShowProcessBar()
+        {
+            myProcessBar = new ProgressBar(vMax);
+            myIncrease = new IncreaseHandle(myProcessBar.Increase);
+            myProcessBar.ShowDialog();
+            myProcessBar = null;
+        }
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            Thread thdSub = new Thread(new ThreadStart(ThreadFun));
+            thdSub.Start();
         }
     }
 }
