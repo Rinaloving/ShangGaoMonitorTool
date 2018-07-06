@@ -12,3 +12,17 @@ D:\MyGitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGao
 D:\MyGitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.exe
 D:\MyGitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.pdb
 D:\MyGitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\bin\x86\Debug\Renci.SshNet.dll
+D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\bin\x86\Debug\ShangGaoMonitorTool.exe.config
+D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\bin\x86\Debug\ShangGaoMonitorTool.exe
+D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\bin\x86\Debug\ShangGaoMonitorTool.pdb
+D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\bin\x86\Debug\System.Net.Http.dll
+D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\bin\x86\Debug\System.Net.Http.xml
+D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\bin\x86\Debug\zh-Hans\System.Net.Http.resources.dll
+D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.Form1.resources
+D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.Properties.Resources.resources
+D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.csproj.GenerateResource.cache
+D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.csproj.CoreCompileInputs.cache
+D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.csproj.CopyComplete
+D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.exe
+D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.pdb
+D:\GitHub\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\ShangGaoMonitorTool\obj\x86\Debug\ShangGaoMonitorTool.ProgressBar.resources
