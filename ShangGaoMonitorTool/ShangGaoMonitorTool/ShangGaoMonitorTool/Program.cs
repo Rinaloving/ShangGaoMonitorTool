@@ -8,6 +8,7 @@ namespace ShangGaoMonitorTool
 {
     static class Program
     {
+        static LoginForm loginForm;
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
@@ -16,7 +17,26 @@ namespace ShangGaoMonitorTool
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            loginForm = new LoginForm();
+            new System.Threading.Thread(ShowLoginFrom).Start();
+
+            if (loginForm.DialogResult == DialogResult.OK)
+            {
+                Application.Run(new Form1());
+            }
+            else
+            {
+                return;
+            }
+           
+            
+           
+        }
+
+        public static void ShowLoginFrom()
+        {
+           
+            loginForm.ShowDialog();
         }
     }
 }
