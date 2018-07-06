@@ -475,7 +475,7 @@ namespace ShangGaoMonitorTool
 
             FileInfo[] localTodayFileInfos = getLocalTodatyFile(fileInfos);
 
-            localtodayfilenum = localTodayFileInfos.Count();
+            localtodayfilenum = localTodayFileInfos == null?0: localTodayFileInfos.Count();
             //如果是周末或0:00分，就设为初始值
             if (localtodayfilenum == 0) { localtodayfilenum = 1; }
 
@@ -493,7 +493,7 @@ namespace ShangGaoMonitorTool
             if (sftptodayfilenum == 0) { sftptodayfilenum = 2; }
             sftp.Disconnect();
 
-            vMax = (localtodayfilenum - sftptodayfilenum)==0?1: (localtodayfilenum - sftptodayfilenum); //如果vMax为0就设置为1，不然进度条会卡死
+            vMax = (localtodayfilenum - sftptodayfilenum)<=0?1: (localtodayfilenum - sftptodayfilenum); //如果vMax为0就设置为1，不然进度条会卡死
 
             initShowPie();
 
