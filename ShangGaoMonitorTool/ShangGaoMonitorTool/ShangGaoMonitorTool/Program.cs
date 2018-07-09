@@ -18,7 +18,8 @@ namespace ShangGaoMonitorTool
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             loginForm = new LoginForm();
-            new System.Threading.Thread(ShowLoginFrom).Start();
+            // new System.Threading.Thread(ShowLoginFrom).Start();
+            loginForm.ShowDialog();
 
             if (loginForm.DialogResult == DialogResult.OK)
             {
